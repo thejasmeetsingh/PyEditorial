@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from . import models
 
-
+@admin.register(models.Blog)
 class BlogAdmin(admin.ModelAdmin):
     list_display = ['title', 'display_category', 'publish']
     list_editable = ('publish',)
@@ -12,7 +12,7 @@ class BlogAdmin(admin.ModelAdmin):
     models.Blog.display_category.short_description = _('Categories')
     prepopulated_fields = {'slug': ('title',)}
 
-
+@admin.register(models.Videocast)
 class VideoAdmin(admin.ModelAdmin):
     list_display = ['title', 'display_category', 'publish']
     list_editable = ('publish',)
@@ -21,7 +21,7 @@ class VideoAdmin(admin.ModelAdmin):
     models.Videocast.display_category.short_description = _('Categories')
     prepopulated_fields = {'slug': ('title',)}
 
-
+@admin.register(models.Podcast)
 class PodcastAdmin(admin.ModelAdmin):
     list_display = ['title', 'display_category', 'publish']
     list_editable = ('publish',)
@@ -32,9 +32,6 @@ class PodcastAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.BlogCategory)
-admin.site.register(models.Blog, BlogAdmin)
 admin.site.register(models.VideocastCategory)
-admin.site.register(models.Videocast, VideoAdmin)
-admin.site.register(models.Podcast, PodcastAdmin)
 admin.site.register(models.PodcastCategory)
 admin.site.register(models.Skill)
